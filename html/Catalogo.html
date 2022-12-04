@@ -64,7 +64,7 @@
       </a-entity>
 
       <a-entity
-        position="-0.4 1.6 -1.2"
+        position="0 1.6 0.3"
         camera look-controls="magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: true">
         <a-cursor color=""></a-cursor>
         <a-entity
@@ -78,11 +78,11 @@
       <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .raycastable"></a-entity>
       <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: .raycastable" line="color: #118A7E"></a-entity>
 
-      <a-entity id="ui" position="0 1.6 -2.5">
+      <a-entity id="ui" position="0.4 1.6 -1.4">
         <!-- Poster menu -->
         <a-entity id="menu" highlight>
           <a-entity id="mortonaofalaButton" position="-0.8 0 0" mixin="frame" class="raycastable menu-button">
-            <a-entity material="src: #mortonaofalaPoster;" mixin="poster" window.location.href = 'html/mortonaofala';>         
+            <a-entity material="src: #mortonaofalaPoster;" mixin="poster">         
             </a-entity>
           </a-entity>
 
@@ -96,9 +96,6 @@
 
         <a-entity id="palhacoButton" position="-1.6 0 0" mixin="frame" class="raycastable menu-button">
           <a-entity material="src: #palhacoPoster" mixin="poster">
-            <button id="opengooglebutton" style="position:  center;">
-              open google
-            </button>
           </a-entity>
       </a-entity>
 
@@ -132,5 +129,26 @@
         </a-entity>
       </a-entity>
     </a-scene>
+    <script>
+
+      let mortonaofalaButton = document.querySelector("#mortonaofalaButton")
+      mortonaofalaButton.addEventListener("click", e=>{
+          location.href = "mortonaofala.html"
+      })
+
+      let medusaButton = document.querySelector("#medusaButton")
+      medusaButton.addEventListener("click", e=>{
+          location.href = "medusa.html"
+      })
+      let bacurauButton = document.querySelector("#bacurauButton")
+      bacurauButton.addEventListener("click", e=>{
+          location.href = "bacurau.html"
+      })
+      let palhacoButton = document.querySelector("#palhacoButton")
+      palhacoButton.addEventListener("click", e=>{
+          location.href = "palhaco.html"
+      })
+      
+  </script> 
   </body>
 </html>
