@@ -12,12 +12,12 @@ AFRAME.registerComponent('info-panel', {
       medusaButton: {
         title: 'Medusa (2021)',
         imgEl: document.querySelector('#medusaMovieImage'),
-        description: 'Uma gangue de jovens mulheres tenta controlar tudo ao seu redor, incluindo outras mulheres, perambulando pelas ruas e espancando aquelas que consideram muito pecaminosas.'
+        description: 'Uma gangue de jovens mulheres tenta controlar tudo ao seu redor, incluindo outras mulheres, perambulando pelas ruas e espancando aquelas que consideram muito pecaminosas. Para resistir à tentação, Mariana e suas namoradas fazem o melhor que podem para controlar tudo e todos ao seu redor. Entretanto, chegará o dia em que a vontade de gritar será mais forte do que nunca.'
       },
       mortonaofalaButton: {
-        title: 'Morto não fala (2018)',
+        title: 'Morto nao fala (2018)',
         imgEl: document.querySelector('#mortonaofalaMovieImage'),
-        description: 'Stênio é plantonista noturno no necrotério de uma grande e violenta cidade. Em suas madrugadas de trabalho, ele nunca está só, já que possui um dom paranormal de comunicação com os mortos. Quando as confidências que ouve do além revelam segredos de sua própria vida, Stênio desencadeia uma maldição que traz perigo e morte para perto de si e de sua família.'
+        description: 'Stenio é plantonista noturno no necroterio de uma grande e violenta cidade. Em suas madrugadas de trabalho, ele nunca esta so, ja que possui um dom paranormal de comunicacao com os mortos. Quando as confidencias que ouve do alem revelam segredos de sua propria vida, Stenio desencadeia uma maldicao que traz perigo e morte para perto de si e de sua familia.'
       },
       bacurauButton: {
         title: 'Bacurau (2019)',

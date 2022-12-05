@@ -2,20 +2,18 @@
 <html>
 
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="utf-8">
   <title>Catalogo</title>
   <meta name="description" content="Laser input UI • A-Frame">
   <script src="../js/dist.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
   <script src="../js/info-message.js"></script>
   <script src="../js/highlight.js"></script>
-  <script language='javascript' src="../js/info-panel.js" charset="utf-8"></script>
   <script src="../js/tentativadebutton.js"></script>
 </head>
 
 <body>
-  <a-scene background="color: #212" environment cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable"
-    info-message="htmlSrc: #messageText">
+  <a-scene background="color: #212" environment cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
     <a-assets>
       <a-asset-item id="messageText" src="index.html"></a-asset-item>
 
@@ -45,8 +43,8 @@
       material="color: red; side: back; shader: flat" scale="0.001 0.001 0.001" visible="false" class="raycastable">
     </a-entity>
 
-    <a-entity position="0 1.6 0.3" camera camera
-      look-controls="magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: true">
+    <a-entity position="0 1.6 0.3" camera
+    camera look-controls="magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: true">
       <a-cursor color=""></a-cursor>
       <a-entity id="fadeBackground" geometry="primitive: sphere; radius: 2.5"
         material="color: black; side: back; shader: flat; transparent: true; opacity: 0.6" visible="false">
@@ -80,7 +78,7 @@
 
         <!-- Info panel of the selected movie. -->
         <a-entity id="infoPanel" position="-0.43 0 0.007" info-panel visible="false" button="true"
-          scale="0.001 0.001 0.001" geometry="primitive: plane; width: 1.5; height: 1.8"
+          scale="0.001 0.001 0.001" geometry="primitive: plane; width: 1.5; height: 1.5"
           material="color: #333333; shader: flat; transparent: false" class="raycastable">
           <a-entity id="bacurauMovieImage" mixin="movieImage" material="src: #bacurau" visible="false"></a-entity>
           <a-entity id="medusaMovieImage" mixin="movieImage" material="src: #medusa" visible="false"></a-entity>
@@ -104,88 +102,33 @@
   </a-scene>
   <script>
 
-    const css = 'color: black; position: relative; z-index: 999999;top: 78%; left: 44.5%; display: none;';
-    const isCardOpened = false;
+    var css =
+      'color: black; position: relative; z-index: 999999;top: 85%; left: 47.5%; display: none;'
 
-    let cardId = '';
-    let clickCount = 0;
-    let canv = document.getElementsByClassName('a-canvas')[0];
+    let mortonaofalaButton = document.querySelector("#mortonaofalaButton")
+    mortonaofalaButton.insertAdjacentHTML('beforeend', `<button id="mortonaofalaBtn" style="${css}"type="button">Assistir!</button>`);
+    mortonaofalaButton.addEventListener("mouseleave", e => { onmouseleave = e => { }; });
+     
+    mortonaofalaButton.addEventListener("click", e => {
+      document.getElementById('mortonaofalaBtn').style.removeProperty("display")
+      // setTimeout(async () => {  location.href = "mortonaofala.html" }, 3000);
+    })
 
-    function buildBtn(elementId, childrenElementId) {
-      let element = document.getElementById(elementId);
-      element.insertAdjacentHTML('beforeend', `<button id="${childrenElementId}" style="${css}" type="button" onclick="onClickBtn('${childrenElementId}')">Clique duas vezes para assistir!</button>`);
-      element.addEventListener("click", async e => {
-        e.preventDefault();
-        this.clickCount = 1;
-        this.isCardOpened = true;
-        this.cardId = childrenElementId;
-        removeDisplayNone(childrenElementId);
-      });
-    }
 
-    function onClickBtn(element) {
-      switch (element) {
-        case 'mortonaofalaBtn': return mortonaofalaRedirecionar();
-        case 'medusaBtn': return medusaRedirecionar();
-        case 'bacurauBtn': return bacurauRedirecionar();
-        case 'palhacoBtn': return palhacoRedirecionar();
-        default: return alert('Error');
-      }
-    }
+    let medusaButton = document.querySelector("#infoPanel")
+    medusaButton.insertAdjacentHTML('beforeend', `<button id="medusaBtn style="${css}" type="button">Click Me!</button>`);
+    medusaButton.addEventListener("click", e => {
+      // setTimeout(async () => {  location.href = "medusa.html" }, 3000);
+    })
+    let bacurauButton = document.querySelector("#infoPanel")
+    bacurauButton.insertAdjacentHTML('beforeend', `<button id="bacurauBtnstyle="${css}" type="button">Click Me!</button>`);
+    bacurauButton.addEventListener("click", e => {
+    })
+    let palhacoButton = document.querySelector("#infoPanel")
+    palhacoButton.insertAdjacentHTML('beforeend', `<button id="palhacoBtn style="${css}" type="button">Click Me!</button>`);
+    palhacoButton.addEventListener("click", e => {
+    })
 
-    function addDisplayNone(elementId) {
-      let element = document.getElementById(elementId);
-      if (element) element.style.display = 'none';
-    }
-
-    function removeDisplayNone(elementId) {
-      let element = document.getElementById(elementId);
-      if (element) element.style.removeProperty("display");
-    }
-
-    canv.addEventListener('click', e => {
-      e.preventDefault();
-      let canvasClass = document.getElementsByClassName('a-mouse-cursor-hover');
-      this.clickCount = this.clickCount + 1;
-      if (canvasClass?.length > 0 && this.isCardOpened && this.clickCount > 2) {
-        this.isCardOpened = false;
-        this.clickCount = 0;
-        return addDisplayNone(this.cardId);
-      }
-    });
-
-    buildBtn('mortonaofalaButton', 'mortonaofalaBtn');
-    buildBtn('medusaButton', 'medusaBtn');
-    buildBtn('bacurauButton', 'bacurauBtn');
-    buildBtn('palhacoButton', 'palhacoBtn');
-
-    function mortonaofalaRedirecionar() {
-      let mortonaofalaBtn = document.querySelector("#mortonaofalaBtn")
-      mortonaofalaBtn.addEventListener("click", e=>{
-            location.href = "mortonaofala.html"
-        })
-    }
-
-    function medusaRedirecionar() {
-      let medusaBtn = document.querySelector("#medusaBtn")
-      medusaBtn.addEventListener("click", e=>{
-            location.href = "medusa.html"
-        })
-    }
-
-    function bacurauRedirecionar() {
-      let bacurauBtn = document.querySelector("#bacurauBtn")
-      bacurauBtn.addEventListener("click", e=>{
-            location.href = "bacurau.html"
-        })
-    }
-
-    function palhacoRedirecionar() {
-      let palhacoBtn = document.querySelector("#palhacoBtn")
-      palhacoBtn.addEventListener("click", e=>{
-            location.href = "palhaco.html"
-        })
-    }
   </script>
 </body>
 
